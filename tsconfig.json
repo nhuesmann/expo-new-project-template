@@ -1,6 +1,22 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    // Type Checking
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+    // Emit
+    "downlevelIteration": true,
+    "importHelpers": true,
+    "removeComments": true,
+    // Interop Constraints
+    "forceConsistentCasingInFileNames": true,
+    // Backwards Compatibility
+    "suppressImplicitAnyIndexErrors": true,
+    // Language and Environment
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
   }
 }
