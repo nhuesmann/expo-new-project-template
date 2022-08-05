@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Button, Text } from 'react-native';
 
 import { ScreenContainer } from '../../components';
