@@ -2,7 +2,7 @@ export const fontMap = {
   // Icons
   IcoMoon: require('../../assets/fonts/icomoon.ttf'),
   // App font
-  // ! Note: you can usually just replace font name with new font and all styles should apply
+  // ? Note: you can usually just replace font name with new font and all styles should apply
   'rubik-black': require('../../assets/fonts/Rubik-Black.ttf'),
   'rubik-black-italic': require('../../assets/fonts/Rubik-BlackItalic.ttf'),
   'rubik-bold': require('../../assets/fonts/Rubik-Bold.ttf'),
@@ -17,4 +17,30 @@ export const fontMap = {
   'rubik-regular': require('../../assets/fonts/Rubik-Regular.ttf'),
   'rubik-semi-bold': require('../../assets/fonts/Rubik-SemiBold.ttf'),
   'rubik-semi-bold-italic': require('../../assets/fonts/Rubik-SemiBoldItalic.ttf'),
+};
+
+export const fontSizeMap = {
+  headingLarge: {
+    fontSize: 40,
+  },
+  headingSmall: {
+    fontSize: 18,
+  },
+  bodyMedium: {
+    fontSize: 16,
+  },
+  bodySmall: {
+    fontSize: 14,
+    lineHeight: 16,
+  },
+  eyebrow: {
+    fontSize: 12,
+    lineHeight: 18,
+    letterSpacingPercent: 13,
+  },
+  micro: {
+    fontSize: 12,
+    lineHeight: 10,
+    letterSpacingPercent: 2,
+  },
 };
