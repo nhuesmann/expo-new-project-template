@@ -5,7 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from 'styled-components/native';
 
 import { AppStackNavigator } from './navigation';
-import { themeDark, themeLight } from './theme';
+import { navThemeDark, navThemeLight, themeDark, themeLight } from './theme';
 
 const {
   Text,
@@ -46,8 +46,8 @@ export default function App() {
   return (
     <RNGH.GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <ThemeProvider theme={themeLight}>
-          <NavigationContainer>
+        <ThemeProvider theme={themeDark}>
+          <NavigationContainer theme={navThemeDark}>
             <AppStackNavigator />
           </NavigationContainer>
         </ThemeProvider>

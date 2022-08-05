@@ -1,14 +1,31 @@
-import { FC } from 'react';
-import { Button, Text } from 'react-native';
+import React, { FC } from 'react';
+import styled, { useTheme } from 'styled-components/native';
 
-import { ScreenContainer } from '../../components';
+import { HeadingSmallText, SmallButton, Spacing } from '../../components';
 import type { AppNavigatorScreenNavProps } from '../../navigation';
 
 export const ModalScreen: FC<AppNavigatorScreenNavProps<'Modal'>> = ({
   navigation,
-}) => (
-  <ScreenContainer>
-    <Text>Modal Screen</Text>
-    <Button onPress={navigation.goBack} title="Dismiss" />
-  </ScreenContainer>
-);
+}) => {
+  const theme = useTheme();
+
+  return (
+    <Container>
+      <HeadingSmallText>Modal Screen</HeadingSmallText>
+      <Spacing px={theme.sizes.spacing.large} />
+      <SmallButton
+        text="Dismiss"
+        hasCaret={false}
+        onPress={navigation.goBack}
+      />
+    </Container>
+  );
+};
+
+const Container = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: ${({ theme }) => theme.sizes.spacing.marginStandard}px;
+  background-color: ${({ theme }) => theme.colors.background};
+`;

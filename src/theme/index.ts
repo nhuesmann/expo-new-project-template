@@ -1,6 +1,8 @@
 import { ThemeColors, themeColorsDark, themeColorsLight } from './colors';
 import { Sizes, sizes } from './sizes';
 
+export { navThemeDark, navThemeLight } from './colors';
+
 interface Font {
   fontSize: number;
   lineHeight: number;

@@ -22,6 +22,7 @@ export const sizes = {
     sizeLarge: scale(26),
     sizeMedium: scale(24),
     sizeSmall: scale(16),
+    sizeMicro: scale(8),
   },
   device: {
     width: wp('100%'),

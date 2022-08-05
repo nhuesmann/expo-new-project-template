@@ -11,6 +11,6 @@ export const HeadingLargeText = styled.Text<FontProps>`
   text-align: ${({ textAlign = 'left' }) => textAlign};
   color: ${({ theme, color }) => color || theme.colors.textStandard};
   font-size: ${fontSize}px;
-  line-height: ${lineHeight ? `${lineHeight}px` : 'normal'};
-  letter-spacing: ${letterSpacing || 0}%;
+  ${() => lineHeight && `line-height: ${lineHeight}px;`}
+  letter-spacing: ${letterSpacing || 0};
 `;

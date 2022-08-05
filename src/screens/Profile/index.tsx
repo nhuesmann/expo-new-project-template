@@ -1,15 +1,41 @@
-import { FC } from 'react';
-import { Button, Text } from 'react-native';
+import React, { FC } from 'react';
+import styled, { useTheme } from 'styled-components/native';
 
-import { ScreenContainer } from '../../components';
+import {
+  HeadingSmallText,
+  SmallButton,
+  Spacing,
+  StandardButton,
+} from '../../components';
 import type { AppNavigatorScreenNavProps } from '../../navigation';
 
 export const ProfileScreen: FC<AppNavigatorScreenNavProps<'Profile'>> = ({
   navigation,
-}) => (
-  <ScreenContainer>
-    <Text>Home Screen</Text>
-    <Button onPress={() => navigation.navigate('Home')} title="Go Home" />
-    <Button onPress={() => navigation.navigate('Modal')} title="Show Modal" />
-  </ScreenContainer>
-);
+}) => {
+  const theme = useTheme();
+
+  return (
+    <Container>
+      <HeadingSmallText>Profile Screen</HeadingSmallText>
+      <Spacing px={theme.sizes.spacing.large} />
+      <StandardButton
+        text="Go Home"
+        onPress={() => navigation.navigate('Home')}
+      />
+      <Spacing px={theme.sizes.spacing.medium} />
+      <SmallButton
+        text="Show Modal"
+        hasCaret={false}
+        onPress={() => navigation.navigate('Modal')}
+      />
+    </Container>
+  );
+};
+
+const Container = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: ${({ theme }) => theme.sizes.spacing.marginStandard}px;
+  background-color: ${({ theme }) => theme.colors.background};
+`;

@@ -1,3 +1,5 @@
+import { Theme as NavTheme } from '@react-navigation/native';
+
 const APP_COLORS = {
   transparent: '#FFFFFF00',
   hero: '#15E885',
@@ -35,4 +37,28 @@ export const themeColorsLight: ThemeColors = {
   textStandard: APP_COLORS.graySlate,
   textAlt: APP_COLORS.grayMedium,
   symbol: APP_COLORS.grayLight,
+};
+
+export const navThemeDark: NavTheme = {
+  dark: true,
+  colors: {
+    background: themeColorsDark.background,
+    border: themeColorsDark.background,
+    card: themeColorsDark.background,
+    notification: themeColorsDark.hero,
+    primary: themeColorsDark.hero,
+    text: themeColorsDark.textStandard,
+  },
+};
+
+export const navThemeLight: NavTheme = {
+  dark: false,
+  colors: {
+    background: themeColorsLight.background,
+    border: themeColorsLight.background,
+    card: themeColorsLight.background,
+    notification: themeColorsLight.hero,
+    primary: themeColorsLight.hero,
+    text: themeColorsLight.textStandard,
+  },
 };

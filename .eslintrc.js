@@ -36,6 +36,7 @@ module.exports = {
     'react/function-component-definition': 'off',
     'react/jsx-boolean-value': ['error', 'always'],
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
+    'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/require-default-props': 'off',
