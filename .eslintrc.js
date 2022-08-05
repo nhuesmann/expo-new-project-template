@@ -33,6 +33,7 @@ module.exports = {
     'jsx-a11y/accessible-emoji': 'off',
     'no-use-before-define': 'off',
     'react/display-name': 'off',
+    'react/function-component-definition': 'off',
     'react/jsx-boolean-value': ['error', 'always'],
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
     'react/prop-types': 'off',
