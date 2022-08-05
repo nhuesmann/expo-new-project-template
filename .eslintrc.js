@@ -32,6 +32,7 @@ module.exports = {
     // ? Overrides Airbnb rules
     'jsx-a11y/accessible-emoji': 'off',
     'no-use-before-define': 'off',
+    'react/destructuring-assignment': 'off',
     'react/display-name': 'off',
     'react/function-component-definition': 'off',
     'react/jsx-boolean-value': ['error', 'always'],

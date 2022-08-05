@@ -24,6 +24,13 @@ export const sizes = {
     sizeSmall: scale(16),
     sizeMicro: scale(8),
   },
+  header: {
+    height: scale(64),
+    heightWithStatusBar: scale(64) + statusBarHeight,
+    buttonHeight: scale(40),
+    buttonPadding: 16,
+    buttonMargin: 8,
+  },
   device: {
     width: wp('100%'),
     height: hp('100%') + androidNavBarOffset,

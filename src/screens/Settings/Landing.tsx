@@ -7,35 +7,26 @@ import {
   Spacing,
   StandardButton,
 } from '../../components';
-import type { AppNavigatorScreenNavProps } from '../../navigation';
+import type { SettingsNavigatorScreenNavProps } from '../../navigation';
 
-export const ProfileScreen: FC<AppNavigatorScreenNavProps<'Profile'>> = ({
-  navigation,
-}) => {
+export const SettingsLandingScreen: FC<
+  SettingsNavigatorScreenNavProps<'SettingsLanding'>
+> = ({ navigation }) => {
   const theme = useTheme();
 
   return (
     <Container>
-      <HeadingSmallText>Profile Screen</HeadingSmallText>
+      <HeadingSmallText>Settings Landing Screen</HeadingSmallText>
       <Spacing px={theme.sizes.spacing.large} />
       <StandardButton
-        text="Go Home"
-        onPress={() => navigation.navigate('Home')}
-      />
-      <Spacing px={theme.sizes.spacing.medium} />
-      <StandardButton
-        text="Go To Settings"
-        onPress={() =>
-          navigation.navigate('Settings', {
-            screen: 'SettingsLanding',
-          })
-        }
+        text="Go To Nested Screen"
+        onPress={() => navigation.navigate('SettingsNestedSetting')}
       />
       <Spacing px={theme.sizes.spacing.medium} />
       <SmallButton
-        text="Show Modal"
+        text="Dismiss"
         hasCaret={false}
-        onPress={() => navigation.navigate('Modal')}
+        onPress={navigation.goBack}
       />
     </Container>
   );

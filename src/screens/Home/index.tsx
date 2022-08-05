@@ -23,6 +23,15 @@ export const HomeScreen: FC<AppNavigatorScreenNavProps<'Home'>> = ({
         onPress={() => navigation.navigate('Profile')}
       />
       <Spacing px={theme.sizes.spacing.medium} />
+      <StandardButton
+        text="Go To Settings"
+        onPress={() =>
+          navigation.navigate('Settings', {
+            screen: 'SettingsLanding',
+          })
+        }
+      />
+      <Spacing px={theme.sizes.spacing.medium} />
       <SmallButton
         text="Show Modal"
         hasCaret={false}

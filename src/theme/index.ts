@@ -19,7 +19,7 @@ interface BaseTheme {
   fonts: Fonts;
 }
 
-const baseTheme: BaseTheme = {
+export const baseTheme: BaseTheme = {
   sizes,
   fonts: {
     title1: {

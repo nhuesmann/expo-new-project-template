@@ -1,9 +1,12 @@
 import { NavigationContainer } from '@react-navigation/native';
+import * as Font from 'expo-font';
+import { useEffect, useState } from 'react';
 import * as RN from 'react-native';
 import * as RNGH from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from 'styled-components/native';
 
+import { fontMap } from './config';
 import { AppStackNavigator } from './navigation';
 import { navThemeDark, navThemeLight, themeDark, themeLight } from './theme';
 
@@ -18,6 +21,17 @@ const {
 const { TouchableOpacity: RNGHTouchableOpacity }: any = RNGH;
 
 export default function App() {
+  // TODO: move this into separate component!
+  const [isInitialized, setIsInitialized] = useState(false);
+  useEffect(() => {
+    async function loadFonts() {
+      await Font.loadAsync(fontMap);
+      setIsInitialized(true);
+    }
+
+    loadFonts();
+  }, []);
+
   // TODO: splash screen fix, status bar adjustments
 
   // Disable font scaling and padding
@@ -43,11 +57,11 @@ export default function App() {
   ScrollView.defaultProps.onEndReachedThreshold = 0.1;
   ScrollView.defaultProps.alwaysBounceVertical = false;
 
-  return (
+  return !isInitialized ? null : (
     <RNGH.GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <ThemeProvider theme={themeDark}>
-          <NavigationContainer theme={navThemeDark}>
+        <ThemeProvider theme={themeLight}>
+          <NavigationContainer theme={navThemeLight}>
             <AppStackNavigator />
           </NavigationContainer>
         </ThemeProvider>

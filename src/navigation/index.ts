@@ -1,1 +1,1 @@
-export * from './AppStackNavigator';
+export * from './navigators';
