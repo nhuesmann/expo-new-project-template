@@ -1,11 +1,5 @@
+import { ThemeColors, themeColorsDark, themeColorsLight } from './colors';
 import { Sizes, sizes } from './sizes';
-
-interface Colors {
-  primary: string;
-  background: string;
-  bodyText: string;
-  titleText: string;
-}
 
 interface Font {
   fontSize: number;
@@ -18,19 +12,12 @@ interface Fonts {
   body: Font;
 }
 
-export interface Theme {
-  colors: Colors;
+interface BaseTheme {
   sizes: Sizes;
   fonts: Fonts;
 }
 
-export const theme: Theme = {
-  colors: {
-    primary: 'palevioletred',
-    background: 'papayawhip',
-    bodyText: 'palevioletred',
-    titleText: 'gray',
-  },
+const baseTheme: BaseTheme = {
   sizes,
   fonts: {
     title1: {
@@ -46,4 +33,18 @@ export const theme: Theme = {
       lineHeight: 18,
     },
   },
+};
+
+export interface Theme extends BaseTheme {
+  colors: ThemeColors;
+}
+
+export const themeDark: Theme = {
+  colors: themeColorsDark,
+  ...baseTheme,
+};
+
+export const themeLight: Theme = {
+  colors: themeColorsLight,
+  ...baseTheme,
 };

@@ -25,7 +25,7 @@ const ButtonContainer = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.tileBackground};
 `;
 
 const Container = styled.View`

@@ -1,67 +1,38 @@
-const hero = '#15E885';
-const transparent = '#FFFFFF00';
-const slateGray = '#131313';
+const APP_COLORS = {
+  transparent: '#FFFFFF00',
+  hero: '#15E885',
+  graySlate: '#131313',
+  grayExtraDark: '#2F2F2F',
+  grayDark: '#5A5A5A',
+  grayMedium: '#828282',
+  grayLight: '#B8B8B8',
+  grayExtraLight: '#F1F1F1',
+  white: '#FFFFFF',
+};
 
-/*
+export interface ThemeColors {
+  hero: string;
+  background: string;
+  tileBackground: string;
+  textStandard: string;
+  textAlt: string;
+  symbol: string;
+}
 
+export const themeColorsDark: ThemeColors = {
+  hero: APP_COLORS.hero,
+  background: APP_COLORS.graySlate,
+  tileBackground: APP_COLORS.grayExtraDark,
+  textStandard: APP_COLORS.white,
+  textAlt: APP_COLORS.grayLight,
+  symbol: APP_COLORS.grayDark,
+};
 
-dark mode
-dark gray
-#2F2F2F
-medium gray
-#5A5A5A
-white
-#FFFFFF
-
-
-light mode
-dark gray
-#828282
-medium gray
-#B8B8B8
-light gray
-#F1F1F1
-
-
-* DARK MODE *
-
-! the types
-background
-icon
-textStandard
-textFaded
-- 70,60,50,40 alphas
-- 70 - settings headings
-- 60 - country codes
-- 50 - buttons & search
-- 40 - numbers on side of graph
-
-
-
-textStandard
-text
-
-
-
-
-search bar text:
-- ffffff at 50%, so bleedthrough
-- measured at 140,140,140
-- hex:  #8C8C8C
-
-
-TODO: update after soren changes figma
-- will be all grays rather than white alphas
-- add this to the main theme file
-- to setup with styled comp
-- add toggle to main screen to demo
-
-*/
-
-const DARK_THEME_COLORS = {
-  transparent,
-  hero,
-  slateGray,
-  darkGray: '#2F2F2F',
-  mediumGray: '#5A5A5A',
+export const themeColorsLight: ThemeColors = {
+  hero: APP_COLORS.hero,
+  background: APP_COLORS.white,
+  tileBackground: APP_COLORS.grayExtraLight,
+  textStandard: APP_COLORS.graySlate,
+  textAlt: APP_COLORS.grayMedium,
+  symbol: APP_COLORS.grayLight,
 };
