@@ -3,6 +3,7 @@ import 'easy-peasy/map-set-support';
 import { NavigationContainer } from '@react-navigation/native';
 import { StoreProvider } from 'easy-peasy';
 import * as Font from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
 import * as RN from 'react-native';
 import * as RNGH from 'react-native-gesture-handler';
@@ -13,6 +14,7 @@ import { fontMap } from './config';
 import { AppStackNavigator } from './navigation';
 import { store, useStoreState } from './store';
 
+// Destructure components needed from react-native & react-native-gesture-handler
 const {
   Text,
   TextInput,
@@ -20,10 +22,37 @@ const {
   FlatList,
   SectionList,
   ScrollView,
+  StatusBar,
 }: any = RN;
 const { TouchableOpacity: RNGHTouchableOpacity }: any = RNGH;
 
+// Configure LayoutAnimation on Android
+if (RN.Platform.OS === 'android') {
+  if (RN.UIManager.setLayoutAnimationEnabledExperimental) {
+    RN.UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+}
+
+// Hide status bar initially and make it light for splash screen
+if (RN.Platform.OS === 'ios') {
+  StatusBar.setHidden(true);
+  StatusBar.setBarStyle('light-content');
+}
+
+// Fix Android StatusBar appearing and pushing content down
+if (RN.Platform.OS === 'android') {
+  StatusBar.setTranslucent(true);
+  StatusBar.setBackgroundColor('transparent');
+}
+
+// TODO: set up sentry, enable dev tools, init segment, set up notifications
+
 export default function App() {
+  // Fix Splash Screen bug
+  useEffect(() => {
+    SplashScreen.preventAutoHideAsync();
+  }, []);
+
   // TODO: move this into separate component!
   const [isInitialized, setIsInitialized] = useState(false);
   useEffect(() => {
@@ -34,8 +63,6 @@ export default function App() {
 
     loadFonts();
   }, []);
-
-  // TODO: splash screen fix, status bar adjustments
 
   // Disable font scaling and padding
   Text.defaultProps = Text.defaultProps || {};
