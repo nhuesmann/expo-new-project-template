@@ -1,6 +1,3 @@
-import { TransitionPresets } from '@react-navigation/stack';
-import { Platform } from 'react-native';
-
 import { baseTheme } from '../theme';
 import { scale } from '../utils';
 import { HeaderLeftBackArrow, HeaderLeftX } from './components';
