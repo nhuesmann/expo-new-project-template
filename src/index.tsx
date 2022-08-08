@@ -82,6 +82,7 @@ const NavigationWithTheme = () => {
   //     }
 
   //     ! need to ensure this only happens after app settings have been loaded... maybe in an app init?
+  // Could have a store variable "isInitialized" that this checks for
   //   */
   // }, [colorScheme])
 

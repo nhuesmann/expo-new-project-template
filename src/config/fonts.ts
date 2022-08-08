@@ -44,3 +44,9 @@ export const fontSizeMap = {
     letterSpacingPercent: 2,
   },
 };
+export type FontName = keyof typeof fontSizeMap;
+export interface FontStyle {
+  fontSize: number;
+  lineHeight?: number;
+  letterSpacing?: number;
+}
