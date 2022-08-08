@@ -66,6 +66,13 @@ module.exports = {
     'no-await-in-loop': 'off',
     'no-control-regex': 'off',
     'no-nested-ternary': 'off',
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: ['state'], // Used for easy-peasy
+      },
+    ],
     'no-restricted-syntax': 'off',
     'no-underscore-dangle': 'off',
     'no-unused-vars': ['warn', { argsIgnorePattern: '^_[0-9]?' }],

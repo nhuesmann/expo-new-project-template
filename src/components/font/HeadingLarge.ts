@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { getScaledFontValues } from '../../utils/font';
+import { getScaledFontValues } from '../../utils';
 import { FontProps } from './props';
 
 const { fontSize, lineHeight, letterSpacing } =

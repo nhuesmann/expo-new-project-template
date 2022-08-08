@@ -8,11 +8,23 @@ import {
   StandardButton,
 } from '../../components';
 import type { AppNavigatorScreenNavProps } from '../../navigation';
+import { useStoreActions, useStoreState } from '../../store';
 
 export const HomeScreen: FC<AppNavigatorScreenNavProps<'Home'>> = ({
   navigation,
 }) => {
   const theme = useTheme();
+
+  const appearanceMode = useStoreState((state) => state.theme.appearanceMode);
+  const setAppearanceMode = useStoreActions(
+    (actions) => actions.theme.setAppearanceMode
+  );
+
+  const nextAppearanceMode = appearanceMode === 'dark' ? 'light' : 'dark';
+
+  function toggleAppearanceMode() {
+    setAppearanceMode(nextAppearanceMode);
+  }
 
   return (
     <Container>
@@ -36,6 +48,12 @@ export const HomeScreen: FC<AppNavigatorScreenNavProps<'Home'>> = ({
         text="Show Modal"
         hasCaret={false}
         onPress={() => navigation.navigate('Modal')}
+      />
+      <Spacing px={theme.sizes.spacing.medium} />
+      <SmallButton
+        text={`Switch to ${nextAppearanceMode} mode`}
+        hasCaret={false}
+        onPress={toggleAppearanceMode}
       />
     </Container>
   );

@@ -1,4 +1,7 @@
+import 'easy-peasy/map-set-support';
+
 import { NavigationContainer } from '@react-navigation/native';
+import { StoreProvider } from 'easy-peasy';
 import * as Font from 'expo-font';
 import { useEffect, useState } from 'react';
 import * as RN from 'react-native';
@@ -8,7 +11,7 @@ import { ThemeProvider } from 'styled-components/native';
 
 import { fontMap } from './config';
 import { AppStackNavigator } from './navigation';
-import { navThemeDark, navThemeLight, themeDark, themeLight } from './theme';
+import { store, useStoreState } from './store';
 
 const {
   Text,
@@ -60,12 +63,36 @@ export default function App() {
   return !isInitialized ? null : (
     <RNGH.GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <ThemeProvider theme={themeLight}>
-          <NavigationContainer theme={navThemeLight}>
-            <AppStackNavigator />
-          </NavigationContainer>
-        </ThemeProvider>
+        <StoreProvider store={store}>
+          <NavigationWithTheme />
+        </StoreProvider>
       </SafeAreaProvider>
     </RNGH.GestureHandlerRootView>
   );
 }
+
+const NavigationWithTheme = () => {
+  // TODO: should this be here? needs to live in a component somewhere
+  // Subscribe to theme color changes
+  // const colorScheme = RN.useColorScheme();
+  // useEffect(() => {
+  //   /*
+  //     if (settings.theme === 'device' && !!colorScheme && !isAppearanceModeSelected(colorScheme)) {
+  //       change it
+  //     }
+
+  //     ! need to ensure this only happens after app settings have been loaded... maybe in an app init?
+  //   */
+  // }, [colorScheme])
+
+  const theme = useStoreState((state) => state.theme.theme);
+  const navTheme = useStoreState((state) => state.theme.navTheme);
+
+  return (
+    <ThemeProvider theme={theme}>
+      <NavigationContainer theme={navTheme}>
+        <AppStackNavigator />
+      </NavigationContainer>
+    </ThemeProvider>
+  );
+};
