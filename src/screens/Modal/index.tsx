@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled, { useTheme } from 'styled-components/native';
 
-import { HeadingSmallText, SmallButton, Spacing } from '../../components';
+import { Divider, HeadingSmallText, SmallButton } from '../../components';
 import type { AppNavigatorScreenNavProps } from '../../navigation';
 
 export const ModalScreen: FC<AppNavigatorScreenNavProps<'Modal'>> = ({
@@ -12,7 +12,7 @@ export const ModalScreen: FC<AppNavigatorScreenNavProps<'Modal'>> = ({
   return (
     <Container>
       <HeadingSmallText>Modal Screen</HeadingSmallText>
-      <Spacing px={theme.sizes.spacing.large} />
+      <Divider px={theme.sizes.spacing.large} />
       <SmallButton
         text="Dismiss"
         hasCaret={false}

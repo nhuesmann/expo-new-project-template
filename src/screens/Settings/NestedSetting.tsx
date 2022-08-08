@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled, { useTheme } from 'styled-components/native';
 
-import { HeadingSmallText, SmallButton, Spacing } from '../../components';
+import { Divider, HeadingSmallText, SmallButton } from '../../components';
 import type { SettingsNavigatorScreenNavProps } from '../../navigation';
 
 export const SettingsNestedSettingScreen: FC<
@@ -12,13 +12,13 @@ export const SettingsNestedSettingScreen: FC<
   return (
     <Container>
       <HeadingSmallText>Settings Nested Setting Screen</HeadingSmallText>
-      <Spacing px={theme.sizes.spacing.large} />
+      <Divider px={theme.sizes.spacing.large} />
       <SmallButton
         text="Go Back"
         hasCaret={false}
         onPress={navigation.goBack}
       />
-      <Spacing px={theme.sizes.spacing.medium} />
+      <Divider px={theme.sizes.spacing.medium} />
       <SmallButton
         text="Go Home"
         hasCaret={false}

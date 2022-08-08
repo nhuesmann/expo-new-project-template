@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import styled, { useTheme } from 'styled-components/native';
 
 import {
+  Divider,
   HeadingSmallText,
   SmallButton,
-  Spacing,
   StandardButton,
 } from '../../components';
 import type { SettingsNavigatorScreenNavProps } from '../../navigation';
@@ -17,12 +17,12 @@ export const SettingsLandingScreen: FC<
   return (
     <Container>
       <HeadingSmallText>Settings Landing Screen</HeadingSmallText>
-      <Spacing px={theme.sizes.spacing.large} />
+      <Divider px={theme.sizes.spacing.large} />
       <StandardButton
         text="Go To Nested Screen"
         onPress={() => navigation.navigate('SettingsNestedSetting')}
       />
-      <Spacing px={theme.sizes.spacing.medium} />
+      <Divider px={theme.sizes.spacing.medium} />
       <SmallButton
         text="Dismiss"
         hasCaret={false}

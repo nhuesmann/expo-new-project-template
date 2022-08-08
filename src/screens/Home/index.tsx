@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import styled, { useTheme } from 'styled-components/native';
 
 import {
+  Divider,
   HeadingSmallText,
   SmallButton,
-  Spacing,
   StandardButton,
 } from '../../components';
 import type { AppNavigatorScreenNavProps } from '../../navigation';
@@ -29,12 +29,12 @@ export const HomeScreen: FC<AppNavigatorScreenNavProps<'Home'>> = ({
   return (
     <Container>
       <HeadingSmallText>Home Screen</HeadingSmallText>
-      <Spacing px={theme.sizes.spacing.large} />
+      <Divider px={theme.sizes.spacing.large} />
       <StandardButton
         text="Go to Profile"
         onPress={() => navigation.navigate('Profile')}
       />
-      <Spacing px={theme.sizes.spacing.medium} />
+      <Divider px={theme.sizes.spacing.medium} />
       <StandardButton
         text="Go To Settings"
         onPress={() =>
@@ -43,13 +43,13 @@ export const HomeScreen: FC<AppNavigatorScreenNavProps<'Home'>> = ({
           })
         }
       />
-      <Spacing px={theme.sizes.spacing.medium} />
+      <Divider px={theme.sizes.spacing.medium} />
       <SmallButton
         text="Show Modal"
         hasCaret={false}
         onPress={() => navigation.navigate('Modal')}
       />
-      <Spacing px={theme.sizes.spacing.medium} />
+      <Divider px={theme.sizes.spacing.medium} />
       <SmallButton
         text={`Switch to ${nextAppearanceMode} mode`}
         hasCaret={false}
