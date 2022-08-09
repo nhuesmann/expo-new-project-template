@@ -1,18 +1,21 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import type { AnyObject } from '../../types';
 import { AsyncStorageKey, getNamespacedAsyncStorageKey } from './keys';
+
+export { ASYNC_STORAGE_KEYS } from './keys';
 
 /**
  * Typesafe getters and setters
  */
 export class SafeAsyncStorage {
   // Objects
-  static setObject(key: AsyncStorageKey, value: object) {
+  static setObject(key: AsyncStorageKey, value: AnyObject) {
     const valueString = JSON.stringify(value);
     setItem(key, valueString);
   }
 
-  static getObject(key: AsyncStorageKey): Promise<object | undefined> {
+  static getObject<T>(key: AsyncStorageKey): Promise<T | undefined> {
     const cb: Callback = (value: string) => JSON.parse(value);
     return getAndConvertItem(key, cb);
   }
