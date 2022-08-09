@@ -1,6 +1,6 @@
 import { HeaderBackButtonProps } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTheme } from 'styled-components/native';
 
 import { IcoMoon } from '../../config';
