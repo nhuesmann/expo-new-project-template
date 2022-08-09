@@ -1,4 +1,5 @@
 import { Action, action, Thunk, thunk, ThunkOn, thunkOn } from 'easy-peasy';
+import debounce from 'lodash/debounce';
 
 import { ASYNC_STORAGE_KEYS, SafeAsyncStorage } from '../../../config';
 import type { ThemeAppearanceModeSetting } from '../../../types';
@@ -13,6 +14,8 @@ const defaultSettings: AppSettings = {
   appearanceMode: defaultAppearanceMode,
 };
 const settingsKey = ASYNC_STORAGE_KEYS.SETTINGS;
+
+const saveSettingsDebounced = debounce(saveSettings, 1000);
 
 export interface SettingsModel {
   // Initialization
@@ -32,7 +35,7 @@ export const settingsModel: SettingsModel = {
     );
 
     if (!loadedSettings) {
-      await SafeAsyncStorage.setObject(settingsKey, defaultSettings);
+      await saveSettings(defaultSettings);
     }
 
     actions.setInitialFields(loadedSettings || defaultSettings);
@@ -46,7 +49,7 @@ export const settingsModel: SettingsModel = {
   }),
   onSettingsChangeAutosave: thunkOn(
     (actions) => [actions.setAppearanceMode],
-    async (_, __, { getState, dispatch }) => {
+    (_, __, { getState, dispatch }) => {
       const state = getState();
 
       // Call any side effects
@@ -58,8 +61,7 @@ export const settingsModel: SettingsModel = {
       const updatedSettings: AppSettings = {
         appearanceMode: state.appearanceMode,
       };
-      // TODO: needs to be debounced
-      await saveSettings(updatedSettings);
+      saveSettingsDebounced(updatedSettings);
     }
   ),
 };

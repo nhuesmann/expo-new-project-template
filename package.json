@@ -18,6 +18,7 @@
     "expo-font": "~10.1.0",
     "expo-navigation-bar": "~1.2.0",
     "expo-splash-screen": "~0.15.1",
+    "lodash": "~4.17.21",
     "memoizerific": "~1.11.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@types/lodash": "~4.14.182",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.66.13",
     "@types/styled-components": "~5.1.25",
