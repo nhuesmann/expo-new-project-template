@@ -9,12 +9,14 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from 'styled-components/native';
 
-import { configureReactNative, fontMap } from './config';
+import { configureReactNative, configureStatusBar, fontMap } from './config';
 import { AppStackNavigator } from './navigation';
 import { store, useStoreState } from './store';
 
-// Override RN defaults
 configureReactNative();
+
+// TODO: enable this after adding status bar fade in after animation
+// configureStatusBar();
 
 // TODO: set up sentry, enable dev tools, init segment, set up notifications
 

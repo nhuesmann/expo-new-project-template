@@ -14,7 +14,6 @@ export function configureReactNative() {
     FlatList,
     SectionList,
     ScrollView,
-    StatusBar,
   }: any = RN;
   const { TouchableOpacity: RNGHTouchableOpacity }: any = RNGH;
 
@@ -23,18 +22,6 @@ export function configureReactNative() {
     if (RN.UIManager.setLayoutAnimationEnabledExperimental) {
       RN.UIManager.setLayoutAnimationEnabledExperimental(true);
     }
-  }
-
-  // Hide status bar initially and make it light for splash screen
-  if (RN.Platform.OS === 'ios') {
-    StatusBar.setHidden(true);
-    StatusBar.setBarStyle('light-content');
-  }
-
-  // Fix Android StatusBar appearing and pushing content down
-  if (RN.Platform.OS === 'android') {
-    StatusBar.setTranslucent(true);
-    StatusBar.setBackgroundColor('transparent');
   }
 
   // Disable font scaling and padding
