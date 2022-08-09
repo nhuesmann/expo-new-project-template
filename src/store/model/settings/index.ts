@@ -2,14 +2,13 @@ import { Action, action, Thunk, thunk, ThunkOn, thunkOn } from 'easy-peasy';
 
 import { ASYNC_STORAGE_KEYS, SafeAsyncStorage } from '../../../config';
 import type { ThemeAppearanceModeSetting } from '../../../types';
-import { getPreferredAppearanceMode } from '../../../utils';
 import type { StoreModel } from '../index';
 
 interface AppSettings {
   appearanceMode: ThemeAppearanceModeSetting;
 }
 
-const defaultAppearanceMode = getPreferredAppearanceMode();
+const defaultAppearanceMode = 'device';
 const defaultSettings: AppSettings = {
   appearanceMode: defaultAppearanceMode,
 };

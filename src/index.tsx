@@ -4,12 +4,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StoreProvider } from 'easy-peasy';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from 'styled-components/native';
 
 import { configureReactNative, configureStatusBar, fontMap } from './config';
+import { useResponsiveAppTheme, useScreenTracking } from './hooks';
 import { AppStackNavigator } from './navigation';
 import { store, useStoreState } from './store';
 
@@ -46,90 +47,27 @@ function AppInitializer() {
   const theme = useStoreState((state) => state.theme.theme);
   const navTheme = useStoreState((state) => state.theme.navTheme);
 
-  const previousRouteRef = useRef<any>();
-  const navigationRef = useRef<any>();
+  // Custom hooks
+  useResponsiveAppTheme();
+  const { navigationRef, onReady, onStateChange } = useScreenTracking();
 
+  // Initialize on mount
   useEffect(() => {
     if (!isAppInitialized) {
       initializeApp();
     }
   }, []);
 
-  // Main initializer function
+  // Main initializer - Cache fonts, load saved settings, (check auth, clean cache, etc)
   async function initializeApp() {
-    // Cache fonts, load saved settings, (check auth, clean cache, etc)
     const fontPromise = Font.loadAsync(fontMap);
-    // TODO: load settings
-    // const userSettingsPromise = store.dispatch.settings.initialize();
+    const userSettingsPromise = store.dispatch.settings.initialize();
 
-    await Promise.all([fontPromise]);
+    await Promise.all([fontPromise, userSettingsPromise]);
 
     setIsAppInitialized(true);
   }
 
-  /*
-  TODO: add this here? needs to live in a component somewhere
-  Subscribe to theme color changes
-  const colorScheme = RN.useColorScheme();
-  useEffect(() => {
-    if (settings.theme === 'device' && !!colorScheme && !isAppearanceModeSelected(colorScheme)) {
-      change it
-    }
-
-    ! need to ensure this only happens after app settings have been loaded... maybe in an app init?
-    Could have a store variable "isAppInitialized" that this checks for
-  }, [colorScheme])
-  */
-
-  // Set up refs for screen tracking
-  function onReady() {
-    previousRouteRef.current = navigationRef.current.getCurrentRoute();
-  }
-
-  // Configure screen tracking
-  function onStateChange() {
-    const previousRoute = previousRouteRef.current;
-    const currentRoute = navigationRef.current.getCurrentRoute();
-
-    const { name: prevRouteName, params: prevRouteParams } = previousRoute;
-    const { name: currRouteName, params: currRouteParams } = currentRoute;
-
-    const prevRouteId = prevRouteParams?.id;
-    const currRouteId = currRouteParams?.id;
-    const currRouteTitle = currRouteParams?.title || currRouteParams?.name;
-
-    if (prevRouteName !== currRouteName || prevRouteId !== currRouteId) {
-      const includeOptions = !!currRouteId;
-      const segmentOptions: any = includeOptions ? {} : undefined;
-      const firebaseOptions: any = { screen_name: currRouteName };
-
-      if (includeOptions) {
-        // Add id/title if they are part of route params
-        if (currRouteId) {
-          segmentOptions.itemId = currRouteId;
-          firebaseOptions.item_id = currRouteId;
-        }
-        if (currRouteTitle) {
-          segmentOptions.itemTitle = currRouteTitle;
-          firebaseOptions.item_title = currRouteTitle;
-        }
-
-        // Segment.screenWithProperties(currRouteName, segmentOptions);
-      } else {
-        // Segment.screen(currRouteName);
-      }
-
-      // Log the Firebase Analytics event, with screen_name and optional properties
-      // Analytics.logEvent('screen_view', firebaseOptions);
-    }
-
-    // Save the current route to previous for later comparision
-    previousRouteRef.current = currentRoute;
-  }
-
-  /*
-   * RENDER
-   */
   // If not initialized, return null so Expo SplashScreen stays enabled
   if (!isAppInitialized) {
     return null;

@@ -1,16 +1,14 @@
 const APP_PREFIX = '@app_name';
 
 // The list of all AsyncStorage keys
-const asyncStorageKeys = {
-  SETTINGS: createNamespacedKey('SETTINGS'),
+export const ASYNC_STORAGE_KEYS = {
+  SETTINGS: 'SETTINGS' as 'SETTINGS',
 };
 
-export type AsyncStorageKey = keyof typeof asyncStorageKeys;
-
-function createNamespacedKey(key: string) {
-  return `${APP_PREFIX}_${key}`;
-}
+export type AsyncStorageKey = keyof typeof ASYNC_STORAGE_KEYS;
 
 export function getNamespacedAsyncStorageKey(key: AsyncStorageKey) {
-  return asyncStorageKeys[key];
+  const rawKey = ASYNC_STORAGE_KEYS[key];
+  const namespacedKey = `${APP_PREFIX}_${rawKey}`;
+  return namespacedKey;
 }
