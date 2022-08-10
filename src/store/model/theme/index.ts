@@ -11,7 +11,7 @@ import {
   themeLight,
 } from '../../../theme';
 import type { ThemeAppearanceMode } from '../../../types';
-import { getDefaultAppearanceMode } from '../../../utils';
+import { getDeviceAppearanceMode } from '../../../utils';
 
 export interface ThemeModel {
   theme: Theme;
@@ -20,7 +20,7 @@ export interface ThemeModel {
   setAppearanceMode: Action<ThemeModel, ThemeAppearanceMode>;
 }
 
-const defaultAppearanceMode = getDefaultAppearanceMode();
+const defaultAppearanceMode = getDeviceAppearanceMode();
 const defaultTheme = defaultAppearanceMode === 'dark' ? themeDark : themeLight;
 const defaultNavTheme =
   defaultAppearanceMode === 'dark' ? navThemeDark : navThemeLight;
@@ -28,7 +28,7 @@ const defaultNavTheme =
 export const themeModel: ThemeModel = {
   theme: defaultTheme,
   navTheme: defaultNavTheme,
-  appearanceMode: getDefaultAppearanceMode(),
+  appearanceMode: getDeviceAppearanceMode(),
   setAppearanceMode: action((state, appearanceMode) => {
     const theme = appearanceMode === 'dark' ? themeDark : themeLight;
     const navTheme = appearanceMode === 'dark' ? navThemeDark : navThemeLight;

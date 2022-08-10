@@ -13,6 +13,7 @@ import memoizerific from 'memoizerific';
 
 import { ASYNC_STORAGE_KEYS, SafeAsyncStorage } from '../../../config';
 import type { ThemeAppearanceModeSetting } from '../../../types';
+import { getDeviceAppearanceMode } from '../../../utils';
 import type { StoreModel } from '../index';
 
 interface AppSettings {
@@ -29,7 +30,7 @@ const saveSettingsDebounced = debounce(saveSettings, 500);
 
 export interface SettingsModel {
   // Initialization
-  initialize: Thunk<SettingsModel>;
+  initialize: Thunk<SettingsModel, void, StoreModel>;
   setInitialFields: Action<SettingsModel, AppSettings>;
   // Settings
   appearanceMode: ThemeAppearanceModeSetting;
@@ -38,7 +39,8 @@ export interface SettingsModel {
     SettingsModel,
     (appearanceMode: ThemeAppearanceModeSetting) => boolean
   >;
-  // Autosave
+  // Thunk listeners
+  onAppearanceModeChange: ThunkOn<SettingsModel, void, StoreModel>;
   onSettingsChangeAutosave: ThunkOn<SettingsModel, void, StoreModel>;
 }
 
@@ -64,17 +66,23 @@ export const settingsModel: SettingsModel = {
   isAppearanceModeSelected: computed((state) =>
     memoizerific(2)((appearanceMode) => state.appearanceMode === appearanceMode)
   ),
-  onSettingsChangeAutosave: thunkOn(
-    (actions) => [actions.setAppearanceMode],
+  onAppearanceModeChange: thunkOn(
+    (actions) => [actions.setAppearanceMode, actions.setInitialFields],
     (_, __, { getState, dispatch }) => {
       const state = getState();
 
-      // Call any side effects
-      if (state.appearanceMode !== 'device') {
+      if (state.appearanceMode === 'device') {
+        dispatch.theme.setAppearanceMode(getDeviceAppearanceMode());
+      } else {
         dispatch.theme.setAppearanceMode(state.appearanceMode);
       }
-
+    }
+  ),
+  onSettingsChangeAutosave: thunkOn(
+    (actions) => [actions.setAppearanceMode],
+    (_, __, { getState }) => {
       // Save updated settings
+      const state = getState();
       const updatedSettings: AppSettings = {
         appearanceMode: state.appearanceMode,
       };

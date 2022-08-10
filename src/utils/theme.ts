@@ -1,4 +1,4 @@
 import { Appearance } from 'react-native';
 
-export const getDefaultAppearanceMode = () =>
+export const getDeviceAppearanceMode = () =>
   Appearance.getColorScheme() || 'dark';
