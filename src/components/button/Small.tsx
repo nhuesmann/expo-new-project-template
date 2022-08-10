@@ -1,9 +1,10 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import styled, { useTheme } from 'styled-components/native';
 
 import { IcoMoon } from '../../config';
 import { BodySmallBoldText } from '../font';
+import { ButtonShrinkContainer } from './_shared';
 
 export interface SmallButtonProps extends TouchableOpacityProps {
   text: string;
@@ -14,29 +15,35 @@ export interface SmallButtonProps extends TouchableOpacityProps {
 export const SmallButton: FC<SmallButtonProps> = ({
   text,
   iconName,
-  hasCaret = true,
+  hasCaret,
   ...touchableProps
 }) => {
   const theme = useTheme();
 
   return (
-    <ButtonContainer {...touchableProps}>
-      {iconName ? (
-        <IcoMoon name={iconName} size={theme.sizes.icon.sizeMedium} />
-      ) : null}
-      <BodySmallBoldText>{text}</BodySmallBoldText>
-      {hasCaret ? (
-        <IcoMoon
-          name="caret-left"
-          size={theme.sizes.icon.sizeMedium}
-          style={{ transform: [{ rotate: '-90deg' }] }}
-        />
-      ) : null}
-    </ButtonContainer>
+    <ButtonShrinkContainer>
+      <Button {...touchableProps}>
+        {iconName ? (
+          <IcoMoon name={iconName} size={theme.sizes.icon.sizeMedium} />
+        ) : null}
+        <BodySmallBoldText textAlign="center">{text}</BodySmallBoldText>
+        {hasCaret ? (
+          <IcoMoon
+            name="caret-left"
+            size={theme.sizes.icon.sizeMicro}
+            color={theme.colors.textStandard}
+            style={{
+              marginLeft: theme.sizes.spacing.small,
+              transform: [{ rotate: '-90deg' }],
+            }}
+          />
+        ) : null}
+      </Button>
+    </ButtonShrinkContainer>
   );
 };
 
-const ButtonContainer = styled(TouchableOpacity)`
+const Button = styled(TouchableOpacity)`
   flex-direction: row;
   justify-content: center;
   align-items: center;

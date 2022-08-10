@@ -1,41 +1,38 @@
 import { FC } from 'react';
-import styled, { useTheme } from 'styled-components/native';
 
 import {
+  CenteringContainer,
   Divider,
-  HeadingSmallText,
+  FlexFill,
+  SafeScreenContainer,
+  SectionHeading,
   SmallButton,
   StandardButton,
 } from '../../components';
 import type { SettingsNavigatorScreenNavProps } from '../../navigation';
+import { baseTheme } from '../../theme';
 
 export const SettingsLandingScreen: FC<
   SettingsNavigatorScreenNavProps<'SettingsLanding'>
-> = ({ navigation }) => {
-  const theme = useTheme();
-
-  return (
-    <Container>
-      <HeadingSmallText>Settings Landing Screen</HeadingSmallText>
-      <Divider px={theme.sizes.spacing.large} />
+> = ({ navigation }) => (
+  <SafeScreenContainer>
+    <FlexFill centerContent={true}>
+      <SectionHeading text="Theme" />
+      <SmallButton text="Device Setting" />
+      <SmallButton text="Dark" />
+      <SmallButton text="Light" />
+    </FlexFill>
+    <CenteringContainer>
       <StandardButton
-        text="Go To Nested Screen"
+        text="Nested Screen"
         onPress={() => navigation.navigate('SettingsNestedSetting')}
       />
-      <Divider px={theme.sizes.spacing.medium} />
+      <Divider px={baseTheme.sizes.spacing.medium} />
       <SmallButton
         text="Dismiss"
         hasCaret={false}
         onPress={navigation.goBack}
       />
-    </Container>
-  );
-};
-
-const Container = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  padding: ${({ theme }) => theme.sizes.spacing.marginStandard}px;
-  background-color: ${({ theme }) => theme.colors.background};
-`;
+    </CenteringContainer>
+  </SafeScreenContainer>
+);

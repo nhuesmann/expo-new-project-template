@@ -4,8 +4,14 @@ import styled, { useTheme } from 'styled-components/native';
 
 import { IcoMoon } from '../../config';
 import { BodyMediumText } from '../font';
+import { ButtonShrinkContainer } from './_shared';
 
-export interface StandardButtonProps extends TouchableOpacityProps {
+interface ContainerProps {
+  fullWidth?: boolean;
+}
+export interface StandardButtonProps
+  extends TouchableOpacityProps,
+    ContainerProps {
   text: string;
   iconName?: string;
 }
@@ -13,25 +19,30 @@ export interface StandardButtonProps extends TouchableOpacityProps {
 export const StandardButton: FC<StandardButtonProps> = ({
   text,
   iconName,
+  fullWidth,
   ...touchableProps
 }) => {
   const theme = useTheme();
 
   return (
-    <ButtonContainer {...touchableProps}>
-      <BodyMediumText>{text}</BodyMediumText>
-      {iconName ? (
-        <IcoMoon name={iconName} size={theme.sizes.icon.sizeMedium} />
-      ) : null}
-    </ButtonContainer>
+    <ButtonShrinkContainer>
+      <Button {...touchableProps} fullWidth={fullWidth}>
+        <BodyMediumText textAlign="center">{text}</BodyMediumText>
+        {iconName ? (
+          <IcoMoon name={iconName} size={theme.sizes.icon.sizeMedium} />
+        ) : null}
+      </Button>
+    </ButtonShrinkContainer>
   );
 };
 
-const ButtonContainer = styled(TouchableOpacity)`
+const Button = styled(TouchableOpacity)<ContainerProps>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
   height: ${({ theme }) => theme.sizes.button.heightStandard}px;
+  width: ${({ theme, fullWidth }) =>
+    fullWidth ? '100%' : `${theme.sizes.button.widthFixed}px`};
   border-radius: ${({ theme }) => theme.sizes.borderRadius.sizeStandard}px;
   padding: 0px ${({ theme }) => theme.sizes.button.paddingStandard}px;
   background-color: ${({ theme }) => theme.colors.tileBackground};

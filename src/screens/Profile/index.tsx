@@ -1,50 +1,41 @@
 import { FC } from 'react';
-import styled, { useTheme } from 'styled-components/native';
 
 import {
+  CenteringContainer,
   Divider,
+  FlexFill,
   HeadingSmallText,
+  SafeScreenContainer,
   SmallButton,
   StandardButton,
 } from '../../components';
 import type { AppNavigatorScreenNavProps } from '../../navigation';
+import { baseTheme } from '../../theme';
 
 export const ProfileScreen: FC<AppNavigatorScreenNavProps<'Profile'>> = ({
   navigation,
-}) => {
-  const theme = useTheme();
-
-  return (
-    <Container>
-      <HeadingSmallText>Profile Screen</HeadingSmallText>
-      <Divider px={theme.sizes.spacing.large} />
+}) => (
+  <SafeScreenContainer>
+    <FlexFill centerContent={true}>
+      <HeadingSmallText>This is the Profile</HeadingSmallText>
+    </FlexFill>
+    <CenteringContainer>
+      <StandardButton text="Home" onPress={() => navigation.navigate('Home')} />
+      <Divider px={baseTheme.sizes.spacing.medium} />
       <StandardButton
-        text="Go Home"
-        onPress={() => navigation.navigate('Home')}
-      />
-      <Divider px={theme.sizes.spacing.medium} />
-      <StandardButton
-        text="Go To Settings"
+        text="Settings"
         onPress={() =>
           navigation.navigate('Settings', {
             screen: 'SettingsLanding',
           })
         }
       />
-      <Divider px={theme.sizes.spacing.medium} />
+      <Divider px={baseTheme.sizes.spacing.medium} />
       <SmallButton
         text="Show Modal"
         hasCaret={false}
         onPress={() => navigation.navigate('Modal')}
       />
-    </Container>
-  );
-};
-
-const Container = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  padding: ${({ theme }) => theme.sizes.spacing.marginStandard}px;
-  background-color: ${({ theme }) => theme.colors.background};
-`;
+    </CenteringContainer>
+  </SafeScreenContainer>
+);
