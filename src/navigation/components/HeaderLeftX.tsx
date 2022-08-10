@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { FC } from 'react';
 import { useTheme } from 'styled-components/native';
 
-import { IcoMoon } from '../../config';
+import { IcoMoon, icoMoonIcons } from '../../config';
 import { HeaderLeftButtonContainer } from './_shared';
 
 export const HeaderLeftX: FC<HeaderBackButtonProps> = () => {
@@ -13,7 +13,7 @@ export const HeaderLeftX: FC<HeaderBackButtonProps> = () => {
   return (
     <HeaderLeftButtonContainer onPress={navigation.goBack}>
       <IcoMoon
-        name="x"
+        name={icoMoonIcons.x}
         size={theme.sizes.icon.sizeSmall}
         color={theme.colors.textStandard}
       />

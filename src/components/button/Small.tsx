@@ -2,13 +2,13 @@ import React, { FC } from 'react';
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import styled, { useTheme } from 'styled-components/native';
 
-import { IcoMoon } from '../../config';
+import { IcoMoon, IcoMoonIconName, icoMoonIcons } from '../../config';
 import { BodySmallBoldText } from '../font';
 import { ButtonShrinkContainer } from './_shared';
 
 export interface SmallButtonProps extends TouchableOpacityProps {
   text: string;
-  iconName?: string;
+  iconName?: IcoMoonIconName;
   hasCaret?: boolean;
 }
 
@@ -29,7 +29,7 @@ export const SmallButton: FC<SmallButtonProps> = ({
         <BodySmallBoldText textAlign="center">{text}</BodySmallBoldText>
         {hasCaret ? (
           <IcoMoon
-            name="caret-left"
+            name={icoMoonIcons.caret_left}
             size={theme.sizes.icon.sizeMicro}
             color={theme.colors.textStandard}
             style={{

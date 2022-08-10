@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import styled from 'styled-components/native';
 
 import {
   CenteringContainer,
@@ -8,19 +9,26 @@ import {
   SectionHeading,
   SmallButton,
   StandardButton,
-} from '../../components';
-import type { SettingsNavigatorScreenNavProps } from '../../navigation';
-import { baseTheme } from '../../theme';
+} from '../../../components';
+import type { SettingsNavigatorScreenNavProps } from '../../../navigation';
+import { baseTheme } from '../../../theme';
+import { ThemeOption } from './ThemeOption';
 
 export const SettingsLandingScreen: FC<
   SettingsNavigatorScreenNavProps<'SettingsLanding'>
 > = ({ navigation }) => (
   <SafeScreenContainer>
     <FlexFill centerContent={true}>
-      <SectionHeading text="Theme" />
-      <SmallButton text="Device Setting" />
-      <SmallButton text="Dark" />
-      <SmallButton text="Light" />
+      <OptionsContainer>
+        <SectionHeading text="Theme" />
+        <Divider line={true} />
+        <ThemeOption appearanceMode="device" label="Device Setting" />
+        <Divider line={true} />
+        <ThemeOption appearanceMode="dark" label="Dark" />
+        <Divider line={true} />
+        <ThemeOption appearanceMode="light" label="Light" />
+        <Divider line={true} />
+      </OptionsContainer>
     </FlexFill>
     <CenteringContainer>
       <StandardButton
@@ -36,3 +44,7 @@ export const SettingsLandingScreen: FC<
     </CenteringContainer>
   </SafeScreenContainer>
 );
+
+const OptionsContainer = styled.View`
+  width: 100%;
+`;

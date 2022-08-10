@@ -1,7 +1,6 @@
 import { Theme as NavTheme } from '@react-navigation/native';
-import { Action, action, Computed, computed } from 'easy-peasy';
+import { Action, action } from 'easy-peasy';
 import * as NavigationBar from 'expo-navigation-bar';
-import memoizerific from 'memoizerific';
 import { Platform, StatusBar } from 'react-native';
 
 import {
@@ -19,10 +18,6 @@ export interface ThemeModel {
   navTheme: NavTheme;
   appearanceMode: ThemeAppearanceMode;
   setAppearanceMode: Action<ThemeModel, ThemeAppearanceMode>;
-  isAppearanceModeSelected: Computed<
-    ThemeModel,
-    (appearanceMode: ThemeAppearanceMode) => boolean
-  >;
 }
 
 const defaultAppearanceMode = getDefaultAppearanceMode();
@@ -57,7 +52,4 @@ export const themeModel: ThemeModel = {
       );
     }
   }),
-  isAppearanceModeSelected: computed((state) =>
-    memoizerific(2)((appearanceMode) => state.appearanceMode === appearanceMode)
-  ),
 };

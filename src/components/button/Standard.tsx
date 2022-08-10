@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import styled, { useTheme } from 'styled-components/native';
 
-import { IcoMoon } from '../../config';
+import { IcoMoon, IcoMoonIconName } from '../../config';
 import { BodyMediumText } from '../font';
 import { ButtonShrinkContainer } from './_shared';
 
@@ -13,7 +13,7 @@ export interface StandardButtonProps
   extends TouchableOpacityProps,
     ContainerProps {
   text: string;
-  iconName?: string;
+  iconName?: IcoMoonIconName;
 }
 
 export const StandardButton: FC<StandardButtonProps> = ({

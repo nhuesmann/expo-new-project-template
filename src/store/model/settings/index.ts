@@ -1,5 +1,15 @@
-import { Action, action, Thunk, thunk, ThunkOn, thunkOn } from 'easy-peasy';
+import {
+  Action,
+  action,
+  Computed,
+  computed,
+  Thunk,
+  thunk,
+  ThunkOn,
+  thunkOn,
+} from 'easy-peasy';
 import debounce from 'lodash/debounce';
+import memoizerific from 'memoizerific';
 
 import { ASYNC_STORAGE_KEYS, SafeAsyncStorage } from '../../../config';
 import type { ThemeAppearanceModeSetting } from '../../../types';
@@ -15,7 +25,7 @@ const defaultSettings: AppSettings = {
 };
 const settingsKey = ASYNC_STORAGE_KEYS.SETTINGS;
 
-const saveSettingsDebounced = debounce(saveSettings, 1000);
+const saveSettingsDebounced = debounce(saveSettings, 500);
 
 export interface SettingsModel {
   // Initialization
@@ -24,6 +34,10 @@ export interface SettingsModel {
   // Settings
   appearanceMode: ThemeAppearanceModeSetting;
   setAppearanceMode: Action<SettingsModel, ThemeAppearanceModeSetting>;
+  isAppearanceModeSelected: Computed<
+    SettingsModel,
+    (appearanceMode: ThemeAppearanceModeSetting) => boolean
+  >;
   // Autosave
   onSettingsChangeAutosave: ThunkOn<SettingsModel, void, StoreModel>;
 }
@@ -47,6 +61,9 @@ export const settingsModel: SettingsModel = {
   setAppearanceMode: action((state, appearanceMode) => {
     state.appearanceMode = appearanceMode;
   }),
+  isAppearanceModeSelected: computed((state) =>
+    memoizerific(2)((appearanceMode) => state.appearanceMode === appearanceMode)
+  ),
   onSettingsChangeAutosave: thunkOn(
     (actions) => [actions.setAppearanceMode],
     (_, __, { getState, dispatch }) => {
