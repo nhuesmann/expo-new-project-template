@@ -7,9 +7,9 @@ import {
   SafeScreenContainer,
   SmallButton,
 } from '../../components';
-import type { AppNavigatorScreenNavProps } from '../../navigation';
+import type { AppNavigatorScreenProps } from '../../navigation';
 
-export const ModalScreen: FC<AppNavigatorScreenNavProps<'Modal'>> = ({
+export const ModalScreen: FC<AppNavigatorScreenProps<'Modal'>> = ({
   navigation,
 }) => (
   <SafeScreenContainer>

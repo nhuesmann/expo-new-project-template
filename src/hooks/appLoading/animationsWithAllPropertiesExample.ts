@@ -1,4 +1,3 @@
-import { StatusBar } from 'react-native';
 import Animated, { EasingNode } from 'react-native-reanimated';
 import { useTheme } from 'styled-components/native';
 
@@ -97,8 +96,6 @@ export const useAppLoadingAnimationsWithAllProperties = () => {
       iconAnim.start(() => {
         titleAnim.start(() => {
           controlsAnim.start(() => {
-            StatusBar.setHidden(false, 'fade');
-
             if (typeof callback === 'function') {
               callback();
             }

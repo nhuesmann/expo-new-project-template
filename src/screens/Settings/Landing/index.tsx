@@ -10,12 +10,12 @@ import {
   SmallButton,
   StandardButton,
 } from '../../../components';
-import type { SettingsNavigatorScreenNavProps } from '../../../navigation';
+import type { SettingsNavigatorScreenProps } from '../../../navigation';
 import { baseTheme } from '../../../theme';
 import { ThemeOption } from './ThemeOption';
 
 export const SettingsLandingScreen: FC<
-  SettingsNavigatorScreenNavProps<'SettingsLanding'>
+  SettingsNavigatorScreenProps<'SettingsLanding'>
 > = ({ navigation }) => (
   <SafeScreenContainer>
     <FlexFill centerContent={true}>

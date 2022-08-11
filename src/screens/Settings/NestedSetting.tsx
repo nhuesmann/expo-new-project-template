@@ -8,11 +8,11 @@ import {
   SafeScreenContainer,
   SmallButton,
 } from '../../components';
-import type { SettingsNavigatorScreenNavProps } from '../../navigation';
+import type { SettingsNavigatorScreenProps } from '../../navigation';
 import { baseTheme } from '../../theme';
 
 export const SettingsNestedSettingScreen: FC<
-  SettingsNavigatorScreenNavProps<'SettingsNestedSetting'>
+  SettingsNavigatorScreenProps<'SettingsNestedSetting'>
 > = ({ navigation }) => (
   <SafeScreenContainer>
     <FlexFill centerContent={true}>

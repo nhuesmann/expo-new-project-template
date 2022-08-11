@@ -4,9 +4,9 @@ import { SettingsLandingScreen } from '../../../screens';
 import { SettingsNestedSettingScreen } from '../../../screens/Settings/NestedSetting';
 import { HeaderLeftX } from '../../components';
 import { screenOptionsHeaderStandard } from '../../config';
-import type { SettingsNavigatorStackParams } from './types';
+import type { SettingsStackNavigatorRoutes } from './types';
 
-const SettingsStack = createStackNavigator<SettingsNavigatorStackParams>();
+const SettingsStack = createStackNavigator<SettingsStackNavigatorRoutes>();
 
 export const SettingsStackNavigator = () => (
   <SettingsStack.Navigator screenOptions={screenOptionsHeaderStandard}>

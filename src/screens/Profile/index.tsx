@@ -9,10 +9,10 @@ import {
   SmallButton,
   StandardButton,
 } from '../../components';
-import type { AppNavigatorScreenNavProps } from '../../navigation';
+import type { AppNavigatorScreenProps } from '../../navigation';
 import { baseTheme } from '../../theme';
 
-export const ProfileScreen: FC<AppNavigatorScreenNavProps<'Profile'>> = ({
+export const ProfileScreen: FC<AppNavigatorScreenProps<'Profile'>> = ({
   navigation,
 }) => (
   <SafeScreenContainer>

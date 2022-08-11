@@ -1,10 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
 import { useEffect } from 'react';
 
-import type { AppNavigatorNavProp } from '../../navigation';
+import type { RootNavigatorNavProp } from '../../navigation';
 import { useStoreState } from '../../store';
 
-type NavProp = AppNavigatorNavProp<'AppLoading'>;
+type NavProp = RootNavigatorNavProp<'AppLoading'>;
 
 export const NavigationTrigger = () => {
   const navigation = useNavigation<NavProp>();
@@ -17,7 +17,7 @@ export const NavigationTrigger = () => {
     if (canNavigateToHomeScreen) {
       navigation.reset({
         index: 0,
-        routes: [{ name: 'Home' }],
+        routes: [{ name: 'App' }],
       });
     }
   }, [canNavigateToHomeScreen]);

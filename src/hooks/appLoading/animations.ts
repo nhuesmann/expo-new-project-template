@@ -1,4 +1,3 @@
-import { StatusBar } from 'react-native';
 import Animated, { EasingNode } from 'react-native-reanimated';
 import { useTheme } from 'styled-components/native';
 
@@ -53,8 +52,6 @@ export const useAppLoadingAnimations = () => {
     /* Run animations */
     colorAnim.start(() => {
       // After final animation, call callback
-      StatusBar.setHidden(false, 'fade');
-
       if (typeof callback === 'function') {
         callback();
       }

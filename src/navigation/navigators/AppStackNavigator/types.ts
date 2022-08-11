@@ -1,27 +1,25 @@
 import { NavigatorScreenParams, RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-import { SettingsNavigatorStackParams } from '../SettingsStackNavigator';
+import type { SettingsStackNavigatorRoutes } from '../SettingsStackNavigator';
 
-export type AppNavigatorStackParams = {
+export type AppStackNavigatorRoutes = {
   Home: undefined;
   Profile: undefined;
   Modal: undefined;
-  Settings: NavigatorScreenParams<SettingsNavigatorStackParams>;
+  Settings: NavigatorScreenParams<SettingsStackNavigatorRoutes>;
 };
 
 // Nav
-export type AppNavigatorNavProp<T extends keyof AppNavigatorStackParams> =
-  StackNavigationProp<AppNavigatorStackParams, T>;
+export type AppNavigatorNavProp<T extends keyof AppStackNavigatorRoutes> =
+  StackNavigationProp<AppStackNavigatorRoutes, T>;
 
 // Route
-export type AppNavigatorRouteProp<T extends keyof AppNavigatorStackParams> =
-  RouteProp<AppNavigatorStackParams, T>;
+export type AppNavigatorRouteProp<T extends keyof AppStackNavigatorRoutes> =
+  RouteProp<AppStackNavigatorRoutes, T>;
 
 // Screen Props
-export type AppNavigatorScreenNavProps<
-  T extends keyof AppNavigatorStackParams
-> = {
+export type AppNavigatorScreenProps<T extends keyof AppStackNavigatorRoutes> = {
   navigation: AppNavigatorNavProp<T>;
   route: AppNavigatorRouteProp<T>;
 };

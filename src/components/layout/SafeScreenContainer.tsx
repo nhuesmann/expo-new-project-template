@@ -1,10 +1,11 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components/native';
 
 import { useSafeAreaPaddingBottom } from '../../hooks';
 import { baseTheme } from '../../theme';
+import { ReactChildren } from '../../types';
 
-export const SafeScreenContainer: FC = ({ children }) => {
+export const SafeScreenContainer: FC<ReactChildren> = ({ children }) => {
   const padding = baseTheme.sizes.spacing.marginStandard;
   const paddingBottom = useSafeAreaPaddingBottom();
 

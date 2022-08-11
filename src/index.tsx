@@ -10,15 +10,14 @@ import { ThemeProvider } from 'styled-components/native';
 
 import { configureReactNative, configureStatusBar } from './config';
 import { useResponsiveAppTheme, useScreenTracking } from './hooks';
-import { AppStackNavigator } from './navigation';
+import { RootNavigator } from './navigation';
 import { store, useStoreActions, useStoreState } from './store';
 
 SplashScreen.preventAutoHideAsync();
 
 configureReactNative();
 
-// TODO: enable this after adding status bar fade in after animation
-// configureStatusBar();
+configureStatusBar();
 
 // TODO: set up sentry, enable dev tools, init segment, set up notifications
 
@@ -79,7 +78,7 @@ function AppInitializer() {
         onReady={onReady}
         onStateChange={onStateChange}
       >
-        <AppStackNavigator />
+        <RootNavigator />
       </NavigationContainer>
     </ThemeProvider>
   );
