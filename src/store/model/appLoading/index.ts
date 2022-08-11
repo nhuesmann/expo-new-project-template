@@ -2,6 +2,7 @@ import { Action, action, Thunk, thunk, ThunkOn, thunkOn } from 'easy-peasy';
 import * as Font from 'expo-font';
 
 import { fontMap } from '../../../config';
+import { Delayer } from '../../../utils';
 import type { StoreModel } from '../index';
 
 export interface AppLoadingModel {
@@ -72,7 +73,15 @@ export const appLoadingModel: AppLoadingModel = {
   onSetIsAnimationComplete: thunkOn(
     (actions) => actions.setIsAnimationComplete,
     (actions) => {
-      // TODO: use Delayer to show loading!
+      // After animation completes, enables loading spinner if data hasn't loaded after a few seconds
+      const delayer = new Delayer({
+        delay: 2500,
+        callback: () => {
+          actions.setShowLoading(true);
+        },
+      });
+      delayer.startTimer();
+      delayer.callFunctionAfterDelay();
     }
   ),
 };

@@ -21,7 +21,7 @@ export const sizes = {
       (wp('100%') - BASE_PIXEL_VALUE * 3 * 2 - scale(BASE_PIXEL_VALUE)) / 2,
   },
   icon: {
-    sizeSplash: scale(64),
+    sizeSplash: 64,
     sizeLarge: scale(26),
     sizeMedium: scale(24),
     sizeSmall: scale(16),

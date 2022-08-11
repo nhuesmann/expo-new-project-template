@@ -1,2 +1,2 @@
-export * from './appInit';
+export * from './appLoading';
 export * from './layout';

@@ -1,3 +1,4 @@
+export * from './delayer';
 export * from './font';
 export * from './math';
 export * from './responsiveDesign';
