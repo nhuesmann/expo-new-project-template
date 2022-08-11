@@ -4,6 +4,7 @@ import {
 } from '@react-navigation/stack';
 
 import { HomeScreen, ModalScreen, ProfileScreen } from '../../../screens';
+import { HeaderLeftX } from '../../components';
 import { screenOptionsHeaderStandard } from '../../config';
 import { SettingsStackNavigator } from '../SettingsStackNavigator';
 import type { AppNavigatorStackParams } from './types';
@@ -19,7 +20,11 @@ export const AppStackNavigator = () => (
       <AppStack.Screen name="Profile" component={ProfileScreen} />
     </AppStack.Group>
     <AppStack.Group screenOptions={{ presentation: 'modal' }}>
-      <AppStack.Screen name="Modal" component={ModalScreen} />
+      <AppStack.Screen
+        name="Modal"
+        component={ModalScreen}
+        options={{ headerLeft: HeaderLeftX }}
+      />
     </AppStack.Group>
     <AppStack.Group
       screenOptions={{
