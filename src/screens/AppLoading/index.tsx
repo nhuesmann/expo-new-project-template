@@ -4,7 +4,7 @@ import { LayoutChangeEvent, Platform } from 'react-native';
 import Animated from 'react-native-reanimated';
 import styled from 'styled-components/native';
 
-import { IcoMoon, icoMoonIcons } from '../../config';
+import { IcoMoon, icoMoonIconNames } from '../../config';
 import { useAppLoadingAnimations, useSafeAreaPaddingBottom } from '../../hooks';
 import { useStoreActions, useStoreState } from '../../store';
 import { baseTheme } from '../../theme';
@@ -58,7 +58,7 @@ export const AppLoading = () => {
     <Container style={{ paddingBottom, backgroundColor }}>
       <AnimatedIcoMoon
         onLayout={onLayout}
-        name={icoMoonIcons.switch}
+        name={icoMoonIconNames.logo}
         size={baseTheme.sizes.icon.sizeSplash}
         color={iconColor}
       />

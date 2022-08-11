@@ -9,7 +9,7 @@ import {
   HeadingSmallText,
   LoadingIndicatorNative,
 } from '../../components';
-import { IcoMoon, icoMoonIcons } from '../../config';
+import { IcoMoon, icoMoonIconNames } from '../../config';
 import { useSafeAreaPaddingBottom } from '../../hooks';
 import { useAppLoadingAnimationsWithAllProperties } from '../../hooks/appLoading/animationsWithAllPropertiesExample';
 import { useStoreActions, useStoreState } from '../../store';
@@ -74,7 +74,7 @@ export const AppLoading = () => {
       <Divider px={hp('23.8%')} />
       <AnimatedIcoMoon
         onLayout={onLayout}
-        name={icoMoonIcons.switch}
+        name={icoMoonIconNames.logo}
         size={baseTheme.sizes.icon.sizeSplash}
         color={iconColor}
         style={{ transform: [{ translateY: iconTranslateY }] }}

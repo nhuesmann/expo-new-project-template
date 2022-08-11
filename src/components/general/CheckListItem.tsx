@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled, { useTheme } from 'styled-components/native';
 
-import { IcoMoon, icoMoonIcons } from '../../config';
+import { IcoMoon, icoMoonIconNames } from '../../config';
 import { BodyMediumText } from '../font';
 
 interface Props {
@@ -29,7 +29,7 @@ export const CheckListItem: FC<Props> = ({
       <BodyMediumText>{text}</BodyMediumText>
       {checked ? (
         <IcoMoon
-          name={icoMoonIcons.check}
+          name={icoMoonIconNames.check}
           size={theme.sizes.icon.sizeSmall}
           color={theme.colors.hero}
         />

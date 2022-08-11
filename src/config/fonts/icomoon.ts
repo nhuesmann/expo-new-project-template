@@ -10,8 +10,8 @@ export const IcoMoon = createIconSetFromIcoMoon(
   expoAssetId
 );
 
-export const icoMoonIcons = {
-  switch: 'switch',
+export const icoMoonIconNames = {
+  logo: 'logo',
   check: 'check',
   caret_left: 'caret_left',
   x: 'x',
@@ -20,4 +20,4 @@ export const icoMoonIcons = {
   trash: 'trash',
 };
 
-export type IcoMoonIconName = keyof typeof icoMoonIcons;
+export type IcoMoonIconName = keyof typeof icoMoonIconNames;
