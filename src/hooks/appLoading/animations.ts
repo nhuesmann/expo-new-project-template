@@ -2,6 +2,9 @@ import { StatusBar } from 'react-native';
 import Animated, { EasingNode } from 'react-native-reanimated';
 import { useTheme } from 'styled-components/native';
 
+import { baseTheme } from '../../theme';
+import { hp } from '../../utils';
+
 const { interpolateColors, timing, Value } = Animated;
 
 const easing = EasingNode.inOut(EasingNode.ease);
@@ -29,7 +32,10 @@ export const useAppLoadingAnimations = () => {
     outputColorRange: [white, themeHero],
   });
 
-  function runAnimations({ callback }: RunAnimationParams) {
+  // Icon Position
+  const iconTranslateY = new Value(0);
+
+  function runAnimations({ initialIconY, callback }: RunAnimationParams) {
     /* Set up animations */
     // Colors
     const colorAnim = timing(colorNode, {
@@ -37,6 +43,12 @@ export const useAppLoadingAnimations = () => {
       duration: 450,
       easing,
     });
+
+    // Icon Position
+    // Need to calculate the difference between exact center and its final render location, that will be the initial translateY. It will travel from there to 0.
+    const middleScreenY = hp('100%') / 2 - baseTheme.sizes.icon.sizeSplash / 2;
+    const translateDistance = middleScreenY - initialIconY;
+    iconTranslateY.setValue(translateDistance as any);
 
     /* Run animations */
     colorAnim.start(() => {
@@ -52,6 +64,7 @@ export const useAppLoadingAnimations = () => {
   return {
     backgroundColor,
     iconColor,
+    iconTranslateY,
     runAnimations,
   };
 };

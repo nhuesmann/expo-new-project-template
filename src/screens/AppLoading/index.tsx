@@ -6,17 +6,15 @@ import styled from 'styled-components/native';
 
 import { IcoMoon, icoMoonIconNames } from '../../config';
 import { useAppLoadingAnimations, useSafeAreaPaddingBottom } from '../../hooks';
-import { useStoreActions, useStoreState } from '../../store';
+import { useStoreActions } from '../../store';
 import { baseTheme } from '../../theme';
+import { NavigationTrigger } from './NavigationTrigger';
 
 const AnimatedIcoMoon = Animated.createAnimatedComponent(IcoMoon);
 
 export const AppLoading = () => {
   const paddingBottom = useSafeAreaPaddingBottom();
 
-  const canNavigateToHomeScreen = useStoreState(
-    (state) => state.appLoading.canNavigateToHomeScreen
-  );
   const { fetchRemoteData, setIsAnimationComplete } = useStoreActions(
     (actions) => ({
       fetchRemoteData: actions.appLoading.fetchRemoteData,
@@ -24,23 +22,12 @@ export const AppLoading = () => {
     })
   );
 
-  const { backgroundColor, iconColor, runAnimations } =
+  const { backgroundColor, iconColor, iconTranslateY, runAnimations } =
     useAppLoadingAnimations();
 
   useEffect(() => {
     fetchRemoteData();
   }, []);
-
-  useEffect(() => {
-    if (canNavigateToHomeScreen) {
-      console.log('gonna nav!');
-      // TODO: enable once I fix the navigators and TS types
-      // navigation.reset({
-      //   index: 0,
-      //   routes: [{ name: 'Home' }],
-      // });
-    }
-  }, [canNavigateToHomeScreen]);
 
   function animationCallback() {
     setIsAnimationComplete(true);
@@ -61,7 +48,9 @@ export const AppLoading = () => {
         name={icoMoonIconNames.logo}
         size={baseTheme.sizes.icon.sizeSplash}
         color={iconColor}
+        style={{ transform: [{ translateY: iconTranslateY }] }}
       />
+      <NavigationTrigger />
     </Container>
   );
 };

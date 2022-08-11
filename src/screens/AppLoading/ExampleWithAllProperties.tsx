@@ -15,15 +15,13 @@ import { useAppLoadingAnimationsWithAllProperties } from '../../hooks/appLoading
 import { useStoreActions, useStoreState } from '../../store';
 import { baseTheme } from '../../theme';
 import { hp } from '../../utils';
+import { NavigationTrigger } from './NavigationTrigger';
 
 const AnimatedIcoMoon = Animated.createAnimatedComponent(IcoMoon);
 
 export const AppLoading = () => {
   const paddingBottom = useSafeAreaPaddingBottom();
 
-  const canNavigateToHomeScreen = useStoreState(
-    (state) => state.appLoading.canNavigateToHomeScreen
-  );
   const { fetchRemoteData, setIsAnimationComplete } = useStoreActions(
     (actions) => ({
       fetchRemoteData: actions.appLoading.fetchRemoteData,
@@ -45,17 +43,6 @@ export const AppLoading = () => {
   useEffect(() => {
     fetchRemoteData();
   }, []);
-
-  useEffect(() => {
-    if (canNavigateToHomeScreen) {
-      console.log('gonna nav!');
-      // TODO: enable once I fix the navigators and TS types
-      // navigation.reset({
-      //   index: 0,
-      //   routes: [{ name: 'Home' }],
-      // });
-    }
-  }, [canNavigateToHomeScreen]);
 
   function animationCallback() {
     setIsAnimationComplete(true);
@@ -96,6 +83,7 @@ export const AppLoading = () => {
       >
         <LoadingIndicator />
       </LoadingContainer>
+      <NavigationTrigger />
     </Container>
   );
 };

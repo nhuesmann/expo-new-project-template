@@ -75,7 +75,7 @@ export const appLoadingModel: AppLoadingModel = {
   fetchRemoteData: thunk(async (actions) => {
     // ! Below mocks data fetching. Remove delayer and add data fetching here.
     const delayer = new Delayer({
-      delay: 2000,
+      delay: 1200,
       callback: () => {
         actions.setIsAppLoadingComplete(true);
       },
