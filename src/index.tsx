@@ -2,17 +2,16 @@ import 'easy-peasy/map-set-support';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { StoreProvider } from 'easy-peasy';
-import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from 'styled-components/native';
 
-import { configureReactNative, configureStatusBar, fontMap } from './config';
+import { configureReactNative, configureStatusBar } from './config';
 import { useResponsiveAppTheme, useScreenTracking } from './hooks';
 import { AppStackNavigator } from './navigation';
-import { store, useStoreState } from './store';
+import { store, useStoreActions, useStoreState } from './store';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -39,13 +38,17 @@ export default function App() {
 }
 
 /*
- * React Component. Handles all async initialization and theming
+ * React Component. Handles theming + loading that occurs while SplashScreen is active.
  */
 function AppInitializer() {
-  const [isAppInitialized, setIsAppInitialized] = useState(false);
-
   const theme = useStoreState((state) => state.theme.theme);
   const navTheme = useStoreState((state) => state.theme.navTheme);
+  const isSplashLoadingComplete = useStoreState(
+    (state) => state.appLoading.isSplashLoadingComplete
+  );
+  const loadLocalData = useStoreActions(
+    (actions) => actions.appLoading.loadLocalData
+  );
 
   // Custom hooks
   useResponsiveAppTheme();
@@ -53,23 +56,13 @@ function AppInitializer() {
 
   // Initialize on mount
   useEffect(() => {
-    if (!isAppInitialized) {
-      initializeApp();
+    if (!isSplashLoadingComplete) {
+      loadLocalData();
     }
   }, []);
 
-  // Main initializer - Cache fonts, load saved settings, (check auth, clean cache, etc)
-  async function initializeApp() {
-    const fontPromise = Font.loadAsync(fontMap);
-    const userSettingsPromise = store.dispatch.settings.initialize();
-
-    await Promise.all([fontPromise, userSettingsPromise]);
-
-    setIsAppInitialized(true);
-  }
-
   // If not initialized, return null so Expo SplashScreen stays enabled
-  if (!isAppInitialized) {
+  if (!isSplashLoadingComplete) {
     return null;
   }
 
