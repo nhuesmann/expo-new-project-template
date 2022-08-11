@@ -4,10 +4,17 @@ import { LayoutChangeEvent, Platform } from 'react-native';
 import Animated from 'react-native-reanimated';
 import styled from 'styled-components/native';
 
+import {
+  Divider,
+  HeadingSmallText,
+  LoadingIndicatorNative,
+} from '../../components';
 import { IcoMoon, icoMoonIcons } from '../../config';
-import { useAppLoadingAnimations, useSafeAreaPaddingBottom } from '../../hooks';
+import { useSafeAreaPaddingBottom } from '../../hooks';
+import { useAppLoadingAnimationsWithAllProperties } from '../../hooks/appLoading/animationsWithAllPropertiesExample';
 import { useStoreActions, useStoreState } from '../../store';
 import { baseTheme } from '../../theme';
+import { hp } from '../../utils';
 
 const AnimatedIcoMoon = Animated.createAnimatedComponent(IcoMoon);
 
@@ -24,8 +31,16 @@ export const AppLoading = () => {
     })
   );
 
-  const { backgroundColor, iconColor, runAnimations } =
-    useAppLoadingAnimations();
+  const {
+    backgroundColor,
+    iconColor,
+    iconTranslateY,
+    titleOpacity,
+    titleTranslateY,
+    controlsOpacity,
+    controlsTranslateY,
+    runAnimations,
+  } = useAppLoadingAnimationsWithAllProperties();
 
   useEffect(() => {
     fetchRemoteData();
@@ -56,12 +71,31 @@ export const AppLoading = () => {
 
   return (
     <Container style={{ paddingBottom, backgroundColor }}>
+      <Divider px={hp('23.8%')} />
       <AnimatedIcoMoon
         onLayout={onLayout}
         name={icoMoonIcons.switch}
         size={baseTheme.sizes.icon.sizeSplash}
         color={iconColor}
+        style={{ transform: [{ translateY: iconTranslateY }] }}
       />
+      <Divider px={baseTheme.sizes.spacing.listItem * 2} />
+      <Animated.View
+        style={{
+          opacity: titleOpacity,
+          transform: [{ translateY: titleTranslateY }],
+        }}
+      >
+        <HeadingSmallText textAlign="center">App Name</HeadingSmallText>
+      </Animated.View>
+      <LoadingContainer
+        style={{
+          opacity: controlsOpacity,
+          transform: [{ translateY: controlsTranslateY }],
+        }}
+      >
+        <LoadingIndicator />
+      </LoadingContainer>
     </Container>
   );
 };
@@ -71,3 +105,12 @@ const Container = styled(Animated.View)`
   padding: 0 ${({ theme }) => theme.sizes.spacing.marginStandard}px;
   align-items: center;
 `;
+
+const LoadingContainer = styled(Animated.View)`
+  margin-top: ${({ theme }) => theme.sizes.spacing.marginStandard}px;
+`;
+
+const LoadingIndicator = () => {
+  const showLoading = useStoreState((state) => state.appLoading.showLoading);
+  return showLoading ? <LoadingIndicatorNative /> : null;
+};

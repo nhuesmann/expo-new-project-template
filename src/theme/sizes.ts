@@ -21,7 +21,7 @@ export const sizes = {
       (wp('100%') - BASE_PIXEL_VALUE * 3 * 2 - scale(BASE_PIXEL_VALUE)) / 2,
   },
   icon: {
-    sizeSplash: 64,
+    sizeSplash: 90, // ? Adjust this value to match the static SplashScreen
     sizeLarge: scale(26),
     sizeMedium: scale(24),
     sizeSmall: scale(16),

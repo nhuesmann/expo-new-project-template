@@ -29,6 +29,7 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
+        {/* @ts-ignore TODO: figure out why React 18 doesn't like this */}
         <StoreProvider store={store}>
           <AppInitializer />
         </StoreProvider>
@@ -67,9 +68,6 @@ function AppInitializer() {
   }
 
   // TODO: add error boundary here!
-
-  // TODO: REMOVE THIS LINE - add to layout of nested landing screen
-  SplashScreen.hideAsync();
 
   // ? Note: can render diff navigators depending on auth status (inside NavigationContainer)
   return (

@@ -1,4 +1,13 @@
-import { Action, action, Thunk, thunk, ThunkOn, thunkOn } from 'easy-peasy';
+import {
+  Action,
+  action,
+  Computed,
+  computed,
+  Thunk,
+  thunk,
+  ThunkOn,
+  thunkOn,
+} from 'easy-peasy';
 import * as Font from 'expo-font';
 
 import { fontMap } from '../../../config';
@@ -36,6 +45,12 @@ export interface AppLoadingModel {
   isAnimationComplete: boolean;
   setIsAnimationComplete: Action<AppLoadingModel, boolean>;
   onSetIsAnimationComplete: ThunkOn<AppLoadingModel>;
+  /**
+   * 4. Navigation handler
+   * Once both app data loading and animation are complete, this will indicate
+   * app is ready to
+   */
+  canNavigateToHomeScreen: Computed<AppLoadingModel, boolean>;
 }
 
 export const appLoadingModel: AppLoadingModel = {
@@ -57,9 +72,16 @@ export const appLoadingModel: AppLoadingModel = {
   setIsAppLoadingComplete: action((state, isAppLoadingComplete) => {
     state.isAppLoadingComplete = isAppLoadingComplete;
   }),
-  fetchRemoteData: thunk(async (actions, _, { dispatch }) => {
-    // TODO: add an artificial delay here to simulate network request
-    //
+  fetchRemoteData: thunk(async (actions) => {
+    // ! Below mocks data fetching. Remove delayer and add data fetching here.
+    const delayer = new Delayer({
+      delay: 2000,
+      callback: () => {
+        actions.setIsAppLoadingComplete(true);
+      },
+    });
+    delayer.startTimer();
+    delayer.callFunctionAfterDelay();
   }),
   showLoading: false,
   setShowLoading: action((state, showLoading) => {
@@ -72,16 +94,22 @@ export const appLoadingModel: AppLoadingModel = {
   }),
   onSetIsAnimationComplete: thunkOn(
     (actions) => actions.setIsAnimationComplete,
-    (actions) => {
+    (actions, _, { getState }) => {
       // After animation completes, enables loading spinner if data hasn't loaded after a few seconds
       const delayer = new Delayer({
         delay: 2500,
         callback: () => {
-          actions.setShowLoading(true);
+          if (!getState().isAppLoadingComplete) {
+            actions.setShowLoading(true);
+          }
         },
       });
       delayer.startTimer();
       delayer.callFunctionAfterDelay();
     }
+  ),
+  // Navigation
+  canNavigateToHomeScreen: computed(
+    (state) => state.isAppLoadingComplete && state.isAnimationComplete
   ),
 };
