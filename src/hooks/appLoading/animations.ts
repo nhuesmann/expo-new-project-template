@@ -24,11 +24,11 @@ export const useAppLoadingAnimations = () => {
   const themeHero = theme.colors.hero;
   const themeBg = theme.colors.background;
 
-  const backgroundColor: any = interpolateColors(colorNode, {
+  const backgroundColor = interpolateColors(colorNode, {
     inputRange: [0, 1],
     outputColorRange: [themeHero, themeBg],
   });
-  const iconColor: any = interpolateColors(colorNode, {
+  const iconColor = interpolateColors(colorNode, {
     inputRange: [0, 1],
     outputColorRange: [white, themeHero],
   });
