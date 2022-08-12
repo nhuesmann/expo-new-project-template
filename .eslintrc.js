@@ -32,9 +32,12 @@ module.exports = {
     // ? Overrides Airbnb rules
     'jsx-a11y/accessible-emoji': 'off',
     'no-use-before-define': 'off',
+    'react/destructuring-assignment': 'off',
     'react/display-name': 'off',
+    'react/function-component-definition': 'off',
     'react/jsx-boolean-value': ['error', 'always'],
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
+    'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/require-default-props': 'off',
@@ -63,6 +66,13 @@ module.exports = {
     'no-await-in-loop': 'off',
     'no-control-regex': 'off',
     'no-nested-ternary': 'off',
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: ['state'], // Used for easy-peasy
+      },
+    ],
     'no-restricted-syntax': 'off',
     'no-underscore-dangle': 'off',
     'no-unused-vars': ['warn', { argsIgnorePattern: '^_[0-9]?' }],
