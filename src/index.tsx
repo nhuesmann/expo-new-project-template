@@ -19,7 +19,7 @@ configureReactNative();
 
 configureStatusBar();
 
-// TODO: set up sentry, enable dev tools, init segment, set up notifications
+// TODO: enable dev tools, init segment, set up notifications
 
 /*
  * Main App Component. Wraps all context providers.

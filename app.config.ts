@@ -4,6 +4,7 @@ const commonConfig = {
   scheme: 'expo-new-project-template',
   privacy: 'unlisted',
   platforms: ['ios', 'android', 'web'],
+  plugins: ['sentry-expo'],
   jsEngine: 'hermes',
   version: '1.0.0',
   orientation: 'portrait',
@@ -30,6 +31,20 @@ const commonConfig = {
     versionCode: 1,
     backgroundColor: '#FFFFFF',
   },
+  // Sentry
+  hooks: {
+    postPublish: [
+      {
+        file: 'sentry-expo/upload-sourcemaps',
+        config: {
+          organization: 'cardboard-companion',
+          project: 'expo-new-project-template',
+          authToken:
+            '3660f20c2e724d539c71b993a4a1a3711332904d6df6402f8ad6fea1273ba658',
+        },
+      },
+    ],
+  },
 };
 
 export default () => {
@@ -41,6 +56,8 @@ export default () => {
       // env vars
       extra: {
         ENVIRONMENT: 'production',
+        SENTRY_DSN:
+          'https://90f1407e74a242c29e66a2c727113e44@o120362.ingest.sentry.io/6644497',
       },
       // iOS
       ios: {
@@ -69,6 +86,8 @@ export default () => {
     // env vars
     extra: {
       ENVIRONMENT: 'development',
+      SENTRY_DSN:
+        'https://90f1407e74a242c29e66a2c727113e44@o120362.ingest.sentry.io/6644497',
     },
     // iOS
     ios: {
