@@ -15,7 +15,7 @@ import { baseTheme } from '../../theme';
 export const HomeScreen: FC<AppNavigatorScreenProps<'Home'>> = ({
   navigation,
 }) => (
-  <SafeScreenContainer>
+  <SafeScreenContainer sentry-label="Home Screen">
     <FlexFill centerContent={true}>
       <HeadingSmallText>This is the Home Screen</HeadingSmallText>
     </FlexFill>

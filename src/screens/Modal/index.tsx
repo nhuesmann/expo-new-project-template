@@ -12,7 +12,7 @@ import type { AppNavigatorScreenProps } from '../../navigation';
 export const ModalScreen: FC<AppNavigatorScreenProps<'Modal'>> = ({
   navigation,
 }) => (
-  <SafeScreenContainer>
+  <SafeScreenContainer sentry-label="Modal Screen">
     <FlexFill centerContent={true}>
       <HeadingSmallText>This is a Modal</HeadingSmallText>
     </FlexFill>

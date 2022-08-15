@@ -25,6 +25,7 @@ export const CheckListItem: FC<Props> = ({
     <TouchableContainer
       onPress={loading ? undefined : onPress}
       activeOpacity={typeof onPress === 'function' ? undefined : 1}
+      sentry-label={`${text} Button`}
     >
       <BodyMediumText>{text}</BodyMediumText>
       {checked ? (

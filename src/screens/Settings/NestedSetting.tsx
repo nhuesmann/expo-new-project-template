@@ -14,7 +14,7 @@ import { baseTheme } from '../../theme';
 export const SettingsNestedSettingScreen: FC<
   SettingsNavigatorScreenProps<'SettingsNestedSetting'>
 > = ({ navigation }) => (
-  <SafeScreenContainer>
+  <SafeScreenContainer sentry-label="SettingsNestedSetting Screen">
     <FlexFill centerContent={true}>
       <HeadingSmallText>Some Nested Screen</HeadingSmallText>
     </FlexFill>
