@@ -5,7 +5,7 @@ import {
 
 import { HomeScreen, ModalScreen, ProfileScreen } from '../../../screens';
 import { HeaderLeftX } from '../../components';
-import { screenOptionsHeaderStandard } from '../../config';
+import { screenOptionsStandard } from '../../config';
 import { SettingsStackNavigator } from '../SettingsStackNavigator';
 import type { AppStackNavigatorRoutes } from './types';
 
@@ -13,7 +13,7 @@ const AppStack = createStackNavigator<AppStackNavigatorRoutes>();
 
 export const AppStackNavigator = () => (
   <AppStack.Navigator
-    screenOptions={screenOptionsHeaderStandard}
+    screenOptions={screenOptionsStandard}
     initialRouteName="Home"
   >
     <AppStack.Group>
