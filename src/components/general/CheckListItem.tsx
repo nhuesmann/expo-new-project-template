@@ -2,6 +2,7 @@ import { FC } from 'react';
 import styled, { useTheme } from 'styled-components/native';
 
 import { IcoMoon, icoMoonIconNames } from '../../config';
+import { useSentryButtonLabel } from '../../hooks';
 import { BodyMediumText } from '../font';
 
 interface Props {
@@ -20,12 +21,13 @@ export const CheckListItem: FC<Props> = ({
   loading,
 }) => {
   const theme = useTheme();
+  const sentryLabel = useSentryButtonLabel(text);
 
   return (
     <TouchableContainer
       onPress={loading ? undefined : onPress}
       activeOpacity={typeof onPress === 'function' ? undefined : 1}
-      sentry-label={`${text} Button`}
+      sentry-label={sentryLabel}
     >
       <BodyMediumText>{text}</BodyMediumText>
       {checked ? (

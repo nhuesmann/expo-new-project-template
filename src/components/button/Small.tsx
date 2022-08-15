@@ -3,6 +3,7 @@ import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import styled, { useTheme } from 'styled-components/native';
 
 import { IcoMoon, IcoMoonIconName, icoMoonIconNames } from '../../config';
+import { useSentryButtonLabel } from '../../hooks';
 import { BodySmallBoldText } from '../font';
 import { ButtonShrinkContainer } from './_shared';
 
@@ -19,9 +20,10 @@ export const SmallButton: FC<SmallButtonProps> = ({
   ...touchableProps
 }) => {
   const theme = useTheme();
+  const sentryLabel = useSentryButtonLabel(text);
 
   return (
-    <ButtonShrinkContainer sentry-label={`${text} Button`}>
+    <ButtonShrinkContainer sentry-label={sentryLabel}>
       <Button {...touchableProps}>
         {iconName ? (
           <IcoMoon name={iconName} size={theme.sizes.icon.sizeMedium} />
