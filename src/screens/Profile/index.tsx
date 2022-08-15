@@ -15,7 +15,7 @@ import { baseTheme } from '../../theme';
 export const ProfileScreen: FC<AppNavigatorScreenProps<'Profile'>> = ({
   navigation,
 }) => (
-  <SafeScreenContainer>
+  <SafeScreenContainer sentry-label="Profile Screen">
     <FlexFill centerContent={true}>
       <HeadingSmallText>This is the Profile</HeadingSmallText>
     </FlexFill>

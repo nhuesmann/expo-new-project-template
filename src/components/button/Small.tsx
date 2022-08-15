@@ -21,7 +21,7 @@ export const SmallButton: FC<SmallButtonProps> = ({
   const theme = useTheme();
 
   return (
-    <ButtonShrinkContainer>
+    <ButtonShrinkContainer sentry-label={`${text} Button`}>
       <Button {...touchableProps}>
         {iconName ? (
           <IcoMoon name={iconName} size={theme.sizes.icon.sizeMedium} />

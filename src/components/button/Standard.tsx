@@ -25,7 +25,7 @@ export const StandardButton: FC<StandardButtonProps> = ({
   const theme = useTheme();
 
   return (
-    <ButtonShrinkContainer>
+    <ButtonShrinkContainer sentry-label={`${text} Button`}>
       <Button {...touchableProps} fullWidth={fullWidth}>
         <BodyMediumText textAlign="center">{text}</BodyMediumText>
         {iconName ? (

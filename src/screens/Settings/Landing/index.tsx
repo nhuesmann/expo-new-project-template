@@ -17,7 +17,7 @@ import { ThemeOption } from './ThemeOption';
 export const SettingsLandingScreen: FC<
   SettingsNavigatorScreenProps<'SettingsLanding'>
 > = ({ navigation }) => (
-  <SafeScreenContainer>
+  <SafeScreenContainer sentry-label="SettingsLanding Screen">
     <FlexFill centerContent={true}>
       <OptionsContainer>
         <SectionHeading text="Theme" />

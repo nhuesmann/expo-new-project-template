@@ -1,6 +1,6 @@
 import { baseTheme } from '../theme';
 import { scale } from '../utils';
-import { HeaderLeftBackArrow, HeaderLeftX } from './components';
+import { HeaderLeftBackArrow } from './components';
 
 const baseHeaderStyle = {
   height: baseTheme.sizes.header.heightWithStatusBar,
@@ -14,10 +14,13 @@ const baseHeaderTitleStyle = {
   fontSize: scale(18),
 };
 
-// TODO: how do I get the shadow under the left part of screen during transition???
+// const cardShadowSettings = {
+//   cardShadowEnabled: false, // Use this prop to have visible shadows during transitions. Defaults to true.
+//   cardOverlayEnabled: true, // Use this prop to have a semi-transparent dark overlay visible under the card during transitions. Defaults to true on Android and false on iOS.
+// }
 
 type HeaderTitleAlign = 'center' | 'left' | undefined;
-const baseHeaderOptions = {
+const baseOptions = {
   // header: Header,
   headerStyle: baseHeaderStyle,
   headerTitleStyle: baseHeaderTitleStyle,
@@ -25,13 +28,12 @@ const baseHeaderOptions = {
   headerTitleAlign: 'center' as HeaderTitleAlign,
 };
 
-export const screenOptionsHeaderStandard = {
-  ...baseHeaderOptions,
+export const screenOptionsStandard = {
+  ...baseOptions,
   headerLeft: HeaderLeftBackArrow,
 };
 
-// TODO: do i need this?
-export const screenOptionsHeaderXButton = {
-  ...baseHeaderOptions,
-  headerLeft: HeaderLeftX,
-};
+// export const screenOptionsXButtonHeader = {
+//   ...baseOptions,
+//   headerLeft: HeaderLeftX,
+// };
